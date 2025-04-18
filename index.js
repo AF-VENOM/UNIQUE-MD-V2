@@ -28,20 +28,9 @@ const path = require('path');
 const prefix = config.PREFIX;
 //const isReact = m.message.reactionMessage ? true : false
 
-const ownerNumber = ['923192173398'];
+const ownerNumber = ['94741984208'];
 
 //===================SESSION-AUTH============================
-if (!fs.existsSync(__dirname + '/Unique_session/creds.json')) {
-  if (!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!');
-  const sessdata = config.SESSION_ID;
-  const filer = File.fromURL(`https://mega.nz/file/${sessdata}`);
-  filer.download((err, data) => {
-      if (err) throw err;
-      fs.writeFile(__dirname + '/Unique_session/creds.json', data, () => {
-          console.log("SESSION DOWNLOADED COMPLETED ✅");
-      });
-  });
-}
 
 const express = require("express");
 const app = express();
@@ -56,7 +45,7 @@ async function connectToWA() {
 
   const conn = makeWASocket({
       logger: P({ level: 'silent' }),
-      printQRInTerminal: false,
+      printQRInTerminal: true,
       browser: Browsers.macOS("Firefox"),
       syncFullHistory: true,
       auth: state,
